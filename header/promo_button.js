@@ -19,7 +19,7 @@
             }
 
             /* Desktop buton stilleri - Sidebar tarzı */
-            .header__signin, .header__signup {
+            .header__signin, .header__promotions, .header__signup {
               display: flex !important;
               align-items: center !important;
               justify-content: center !important;
@@ -41,6 +41,30 @@
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
                 position: relative !important;
                 overflow: hidden !important;
+            }
+
+            /* Promosyonlar butonu - Giris Yap ile ayni aile */
+            .header__promotions {
+                border: 2px solid rgba(255, 229, 92, 0.2) !important;
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
+                box-shadow: 0 3px 12px rgba(255, 229, 92, 0.15) !important;
+            }
+
+            .header__promotions span {
+                display: block !important;
+                color: var(--tf-tc) !important;
+                font-size: 22px !important;
+                text-transform: uppercase !important;
+                font-weight: 700 !important;
+                transition: color .4s ease !important;
+            }
+
+            .header__promotions:hover {
+                border-color: rgba(255, 229, 92, 0.4) !important;
+                background: linear-gradient(135deg, rgba(255, 229, 92, 0.08) 0%, rgba(255, 229, 92, 0.04) 100%) !important;
+                color: #ffffff !important;
+                transform: translateY(-3px) !important;
+                box-shadow: 0 10px 30px rgba(255, 229, 92, 0.3) !important;
             }
 
             /* Giriş yap butonu - daha bold */
@@ -157,6 +181,21 @@
                 animation: iconBounce 2.5s infinite ease-in-out !important;
             }
 
+            .header__promotions::before {
+                content: "" !important;
+                background-color: #FFE55C !important;
+                width: 22px !important;
+                height: 22px !important;
+                display: inline-block !important;
+                margin-right: 6px !important;
+                flex-shrink: 0 !important;
+                -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6h-2.18A2.996 2.996 0 0 0 12 6a2.996 2.996 0 0 0-5.82 0H4a2 2 0 0 0-2 2v3h1v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9h1V8a2 2 0 0 0-2-2zm-5-2a1 1 0 1 1 0 2h-2a1 1 0 0 1 2-2zM9 4a1 1 0 0 1 1 1 1 1 0 0 1-1 1H7a1 1 0 1 1 0-2h2zm10 16H5v-9h4v2h2v-2h2v2h2v-2h4v9z"/></svg>') no-repeat center !important;
+                -webkit-mask-size: 22px 22px !important;
+                mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 6h-2.18A2.996 2.996 0 0 0 12 6a2.996 2.996 0 0 0-5.82 0H4a2 2 0 0 0-2 2v3h1v9a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-9h1V8a2 2 0 0 0-2-2zm-5-2a1 1 0 1 1 0 2h-2a1 1 0 0 1 2-2zM9 4a1 1 0 0 1 1 1 1 1 0 0 1-1 1H7a1 1 0 1 1 0-2h2zm10 16H5v-9h4v2h2v-2h2v2h2v-2h4v9z"/></svg>') no-repeat center !important;
+                mask-size: 22px 22px !important;
+                transition: transform 0.3s ease !important;
+            }
+
             /* SVG animasyonları - desktop */
             @keyframes iconBounce {
                 0%, 100% { 
@@ -175,6 +214,10 @@
             .header__signup:hover::before {
                 transform: scale(1.1) !important;
                 background-color: #000000 !important;
+            }
+
+            .header__promotions:hover::before {
+                transform: scale(1.1) !important;
             }
 
             /* Shine efekti - sadece giriş yap için */
@@ -200,7 +243,7 @@
                     gap: 6px !important; 
                 }
 
-                .header__signin, .header__signup {
+                .header__signin, .header__promotions, .header__signup {
                     display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
@@ -214,6 +257,10 @@
                     min-width: 110px !important;
                     width: auto !important;
                     white-space: nowrap !important;
+                }
+
+                .header__promotions {
+                    display: none !important;
                 }
 
                 /* Mobilde giriş yap - sadece icon */
@@ -350,6 +397,21 @@
             // Metin ekle - iconlar CSS'te
             const signinBtn = headerActions.querySelector('.header__signin');
             const signupBtn = headerActions.querySelector('.header__signup');
+            let promoBtn = headerActions.querySelector('.header__promotions');
+
+            if (!promoBtn) {
+                promoBtn = document.createElement('a');
+                promoBtn.className = 'header__promotions';
+                promoBtn.href = '/tr/promotions';
+                promoBtn.innerHTML = '<span>Promosyonlar</span>';
+                if (signupBtn && signupBtn.parentNode === headerActions) {
+                    headerActions.insertBefore(promoBtn, signupBtn);
+                } else {
+                    headerActions.appendChild(promoBtn);
+                }
+            } else {
+                promoBtn.innerHTML = '<span>Promosyonlar</span>';
+            }
 
             if (signinBtn) {
                 signinBtn.innerHTML = '<span>Giriş Yap</span>';
