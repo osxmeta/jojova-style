@@ -69,7 +69,6 @@ const JS_FILES = [
     'header/promo_button.js',
     'header/logo_css_loader.js',
     'iframe_spor/spor_css_replacer.js',
-    'popup_new/popup.js',
     'promo_buton/promo_image_fixer.js',
     'yatirim_uyari_sistemi/yatirim_uyari.js',
     'page_loader.js',
