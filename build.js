@@ -136,6 +136,16 @@ function build(version) {
         }
     });
 
+    function stripScriptWrappers(content) {
+        return content
+            .split('\n')
+            .filter(function(line) {
+                var trimmed = line.trim();
+                return !/^<script\b[^>]*>$/i.test(trimmed) && !/^<\/script>$/i.test(trimmed);
+            })
+            .join('\n');
+    }
+
     // JS bundle
     var jsContent = '';
     var jsCount = 0;
@@ -143,7 +153,8 @@ function build(version) {
         var filePath = path.join(BASE, file);
         if (fs.existsSync(filePath)) {
             var content = fs.readFileSync(filePath, 'utf-8');
-            jsContent += '\n/* ===== ' + file + ' ===== */\n' + content + '\n';
+            var normalizedContent = stripScriptWrappers(content);
+            jsContent += '\n/* ===== ' + file + ' ===== */\n' + normalizedContent + '\n';
             jsCount++;
         } else {
             console.warn('  [!] JS bulunamadı: ' + file);

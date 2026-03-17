@@ -1,5 +1,4 @@
 /* ===== Genel_Style/style2.js ===== */
-<script>
 (function() {
   // SPA Navigasyon - Sayfa yenilemeden yönlendirme
   window.navigateWithoutReload = function(url) {
@@ -1450,11 +1449,9 @@
   })();
 
 })(); 
-</script>
  
 
 /* ===== Genel_Style/footer_backlink.js ===== */
-<script>
 // Footer Backlink Injector - jojovagiris.cc
 (function() {
   'use strict';
@@ -1483,7 +1480,6 @@
   }
   
 })();
-</script>
 
 
 /* ===== Genel_Style/comm100-chat-position.js ===== */
@@ -1562,7 +1558,6 @@
 
 
 /* ===== Sidebar/sidebar_reorder_safe2.js ===== */
-<script>
 // Sidebar Tam Sıralama - İstenen Düzen
 (function() {
     'use strict';
@@ -2413,14 +2408,11 @@
     setTimeout(cleanLangButtons, 1000);
     
 })();
-</script>
-</script>
 
 
 
 
 /* ===== badge/badge_replacer.js ===== */
-<script>
 // VIP Badge Görsel Değiştirici - Toplu Değiştirme
 // Tüm VIP seviyeleri için görsel değiştirme
 
@@ -2612,10 +2604,8 @@
     });
     
 })();
-</script>
 
 /* ===== font_loader.js ===== */
-<script>
 // Jojova Font Yükleyici - fonts.css'i dinamik yükler
 (function() {
     'use strict';
@@ -2746,11 +2736,9 @@
     
     console.log('🎨 Jojova Font Loader hazır (Poppins + Inter + Commissioner)');
 })();
-</script>
 
 
 /* ===== futbol_sekmesi/futbol_sekmesi.js ===== */
-<script>
 // Futbol Sekmesi JavaScript
 class FutbolSekmesi {
     constructor() {
@@ -3007,10 +2995,8 @@ function injectFutbolCSS() {
         document.head.appendChild(link);
     }
 }
-</script>
 
 /* ===== header/promo_button.js ===== */
-<script type="text/javascript">
 (function() {
     const interval = setInterval(() => {
         const headerActions = document.querySelector('.header__actions');
@@ -3375,10 +3361,8 @@ function injectFutbolCSS() {
         }
     }, 100);
 })();
-</script>
 
 /* ===== header/logo_css_loader.js ===== */
-<script>
 // Header Logo CSS Yükleyici - logo_up.css'i zorunlu yükler
 (function() {
     'use strict';
@@ -3540,11 +3524,9 @@ function injectFutbolCSS() {
     
     console.log('🎯 Header Logo CSS Yükleyici hazır');
 })();
-</script>
 
 
 /* ===== iframe_spor/spor_css_replacer.js ===== */
-<script>
 (function() {
     // Spor CSS Değiştirici - Sarı-Siyah Tema Entegrasyonu
     function initSporCSSReplacer() {
@@ -3689,11 +3671,9 @@ function injectFutbolCSS() {
     window.replaceSporCSS = initSporCSSReplacer;
     
 })();
-</script>
 
 
 /* ===== popup_new/popup.js ===== */
-<script>
 // Popup Manager
 class PopupManager {
     constructor() {
@@ -3911,10 +3891,8 @@ initPopup();
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { PopupManager, popupUtils, showPopup, hidePopup, setPopupImage };
 } 
-</script>
 
 /* ===== promo_buton/promo_image_fixer.js ===== */
-<script>
 /* Promosyon Butonları Görsel URL Düzeltici */
 (function() {
     // Doğru görsel URL'leri - Vendor provider kullanıyor
@@ -4016,7 +3994,6 @@ if (typeof module !== 'undefined' && module.exports) {
     
     console.log('Promosyon butonları görsel düzeltici yüklendi');
 })();
-</script>
 
 /* ===== yatirim_uyari_sistemi/yatirim_uyari.js ===== */
 (function() {
