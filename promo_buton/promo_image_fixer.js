@@ -37,16 +37,12 @@
         return WS_PROXY + encodeURIComponent(url);
     }
 
-    function placeholderDataUrl(label) {
-        const safe = (label || 'Kategori').replace(/</g, '').replace(/>/g, '');
-        const svg =
-            '<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240">' +
-            '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
-            '<stop offset="0%" stop-color="#333"/><stop offset="100%" stop-color="#555"/></linearGradient></defs>' +
-            '<rect width="100%" height="100%" fill="url(#g)"/>' +
-            '<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#FFE55C" font-family="Arial" font-size="24">' + safe + '</text>' +
-            '</svg>';
-        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    function shouldReplaceImage(imgElement) {
+        const src = (imgElement.getAttribute('src') || '').trim();
+        const isEmpty = !src || src === 'about:blank';
+        const isDefaultPromoIcon = src.indexOf('/promo-icons/') > -1;
+        const isBrokenLoaded = imgElement.complete && imgElement.naturalWidth === 0;
+        return isEmpty || isDefaultPromoIcon || isBrokenLoaded;
     }
 
     // Görsel URL'lerini düzelten fonksiyon
@@ -67,16 +63,17 @@
                     const correctSrc = ORIGIN + targetFile;
                     const proxiedSrc = toProxy(correctSrc);
 
-                    // Önce direkt URL, hata olursa proxy, tekrar hata olursa placeholder
+                    // Çalışan özel görseli ezme: sadece boş/kırık/default icon ise müdahale et
+                    if (!shouldReplaceImage(imgElement)) {
+                        return;
+                    }
+
                     imgElement.dataset.mitoRw = '1';
                     imgElement.alt = categoryTitle;
                     imgElement.src = correctSrc;
 
                     imgElement.onerror = function() {
-                        if (imgElement.dataset.mitoRwStage === 'proxy') {
-                            imgElement.src = placeholderDataUrl(categoryTitle);
-                            return;
-                        }
+                        if (imgElement.dataset.mitoRwStage === 'proxy') return;
                         imgElement.dataset.mitoRwStage = 'proxy';
                         imgElement.src = proxiedSrc;
                     };
