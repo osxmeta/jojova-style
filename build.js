@@ -51,6 +51,7 @@ const CSS_FILES = [
     'Sport_Kısmı/css.css',
     'yatirim_uyari_sistemi/yatirim_uyari.css',
     'CSS/main-content.css',
+    'CSS/bundle_test.css',
 ];
 
 // ============================================================
@@ -73,6 +74,7 @@ const JS_FILES = [
     'yatirim_uyari_sistemi/yatirim_uyari.js',
     'page_loader.js',
     'SCRIPT/login.js',
+    'SCRIPT/bundle_test.js',
 ];
 
 // ============================================================
