@@ -59,7 +59,7 @@ const CSS_FILES = [
 // ============================================================
 
 const JS_FILES = [
-    'Genel_Style/style.js',
+    'Genel_Style/style2.js',
     'Genel_Style/footer_backlink.js',
     'Genel_Style/comm100-chat-position.js',
     'Sidebar/sidebar_reorder_safe2.js',

@@ -1,6 +1,16 @@
-/* ===== Genel_Style/style.js ===== */
+/* ===== Genel_Style/style2.js ===== */
 <script>
 (function() {
+  // SPA Navigasyon - Sayfa yenilemeden yönlendirme
+  window.navigateWithoutReload = function(url) {
+    // History API ile URL'i değiştir (sayfa yenilemez)
+    history.pushState(null, '', url);
+    
+    // Popstate event'i tetikle (framework'ün router'ı algılar)
+    const popStateEvent = new PopStateEvent('popstate', { state: null });
+    window.dispatchEvent(popStateEvent);
+  };
+  
   // Sayfa içeriğini güncelleyen ana fonksiyon
   function updatePageContent() {
     var targetDiv = document.getElementById("banners-wrapper");
@@ -26,148 +36,95 @@
     // Eğer div bulunduysa içine metin ekle
     if (targetDiv) {
       
-       // Slider Container - En üstte olacak
+       // Slider Container - En üstte olacak (SPA Navigasyon)
        const sliderContainer = `
-           <!-- Desktop Swiper Slider -->
+           <!-- Desktop Splide Slider -->
            <div class="main-slider-container">
-               <div class="swiper main-slider">
-                   <div class="swiper-wrapper">
-                       
-                       <!-- Slide 1 - NEW -->
-                       <div class="swiper-slide">
-                           <div class="slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/jQMoRFXZ4Wf3aEaKqEDlfxihkqzb2c3hAjasYlR8.png" alt="Slide 1" class="slider-image">
-                               </a>
-                           </div>
-                       </div>
-                       
-                       <!-- Slide 2 -->
-                       <div class="swiper-slide">
-                           <div class="slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/i7XUaFcZxjrr5JUOrnK1INmeGhLnPbA7GAUA0lQx.png" alt="Slide 2" class="slider-image">
-                               </a>
-                           </div>
-                       </div>
-
-
-                       <!-- Slide 4 -->
-                       <div class="swiper-slide">
-                           <div class="slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/mL48sxRFfepgwtymuxLDoFF8fUlNtFlh01p0ymHH.png" alt="Slide 4" class="slider-image">
-                               </a>
-                           </div>
-                       </div>
-
-                       <!-- Slide 5 -->
-                       <div class="swiper-slide">
-                           <div class="slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/crsIJYbRFcbVhKmBAZo4mTpDJiP3omWQzl237hy1.png" alt="Slide 5" class="slider-image">
-                               </a>
-                           </div>
-                       </div>
-
-                       <!-- Slide 6 -->
-                       <div class="swiper-slide">
-                           <div class="slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/t14v7zHjn9tx7Ariu8EzH26TdGjsYFqUiTUBcDD0.png" alt="Slide 6" class="slider-image">
-                               </a>
-                           </div>
-                       </div>
-
+               <div class="splide main-slider" role="group" aria-label="Slider">
+                   <div class="splide__track">
+                       <ul class="splide__list">
+                           <li class="splide__slide">
+                               <div class="slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/statics/V93K4oBk524khXpL8GAu0ghaAu4HO81XYpNBFzzS.png" alt="Slide 1" class="slider-image">
+                               </div>
+                           </li>
+                           <li class="splide__slide">
+                               <div class="slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/jQMoRFXZ4Wf3aEaKqEDlfxihkqzb2c3hAjasYlR8.png" alt="Slide 2" class="slider-image">
+                               </div>
+                           </li>
+                           <li class="splide__slide">
+                               <div class="slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/crsIJYbRFcbVhKmBAZo4mTpDJiP3omWQzl237hy1.png" alt="Slide 3" class="slider-image">
+                               </div>
+                           </li>
+                           <li class="splide__slide">
+                               <div class="slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/t14v7zHjn9tx7Ariu8EzH26TdGjsYFqUiTUBcDD0.png" alt="Slide 4" class="slider-image">
+                               </div>
+                           </li>
+                       </ul>
                    </div>
-                   
-                   <!-- Pagination - Sol alt köşe -->
-                   <div class="swiper-pagination"></div>
                </div>
            </div>
 
-           <!-- Mobile Swiper Slider -->
+           <!-- Mobile Splide Slider -->
            <div class="mobile-slider-container">
-               <div class="swiper mobile-slider">
-                   <div class="swiper-wrapper">
-                       
-                       <!-- Mobile Slide 1 - NEW -->
-                       <div class="swiper-slide">
-                           <div class="mobile-slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/4rBPygBwpsIUAHRz2vBpM6THyfC8MgjmyEbuzQTI.png" alt="Mobile Slide 1" class="mobile-slider-image">
-                               </a>
-                           </div>
-                       </div>
-                       
-                       <!-- Mobile Slide 2 -->
-                       <div class="swiper-slide">
-                           <div class="mobile-slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/J3qQrJO21QWoAv5uyD9eYrkUwsikP2u9bAIXKopL.png" alt="Mobile Slide 2" class="mobile-slider-image">
-                               </a>
-                           </div>
-                       </div>
-
-
-                       <!-- Mobile Slide 4 -->
-                       <div class="swiper-slide">
-                           <div class="mobile-slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/Hb26YDg01wsXMza4zJE5ky7nRRtONUVwyca6nlMx.png" alt="Mobile Slide 4" class="mobile-slider-image">
-                               </a>
-                           </div>
-                       </div>
-
-                       <!-- Mobile Slide 5 -->
-                       <div class="swiper-slide">
-                           <div class="mobile-slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/Mv8x7iVqQ3aScDlxsIbKXAroPF8gFpuQe2E29PqT.png" alt="Mobile Slide 5" class="mobile-slider-image">
-                               </a>
-                           </div>
-                       </div>
-
-                       <!-- Mobile Slide 6 -->
-                       <div class="swiper-slide">
-                           <div class="mobile-slider-image-container">
-                               <a href="${langPrefix}/promotions">
-                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/Bapj61C3FNBMLXIxih5rTgNqmRHt2lc6NyiCS7Ve.png" alt="Mobile Slide 6" class="mobile-slider-image">
-                               </a>
-                           </div>
-                       </div>
-
+               <div class="splide mobile-slider" role="group" aria-label="Mobile Slider">
+                   <div class="splide__track">
+                       <ul class="splide__list">
+                           <li class="splide__slide">
+                               <div class="mobile-slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/statics/2mvsm4GyVsgXQAngQLOvj0Ot8iN3bY7xIC2BmZ04.jpg" alt="Mobile Slide 1" class="mobile-slider-image">
+                               </div>
+                           </li>
+                           <li class="splide__slide">
+                               <div class="mobile-slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/4rBPygBwpsIUAHRz2vBpM6THyfC8MgjmyEbuzQTI.png" alt="Mobile Slide 2" class="mobile-slider-image">
+                               </div>
+                           </li>
+                           <li class="splide__slide">
+                               <div class="mobile-slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/Mv8x7iVqQ3aScDlxsIbKXAroPF8gFpuQe2E29PqT.png" alt="Mobile Slide 3" class="mobile-slider-image">
+                               </div>
+                           </li>
+                           <li class="splide__slide">
+                               <div class="mobile-slider-image-container" onclick="navigateWithoutReload('${langPrefix}/promotions')" style="cursor: pointer;">
+                                   <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/Bapj61C3FNBMLXIxih5rTgNqmRHt2lc6NyiCS7Ve.png" alt="Mobile Slide 4" class="mobile-slider-image">
+                               </div>
+                           </li>
+                       </ul>
                    </div>
-                   
-                   <!-- Mobile Pagination -->
-                   <div class="swiper-pagination"></div>
                </div>
            </div>
        `;
 
-    // Payment Container - Görseldeki sıralamaya göre
+    // Payment Container - SPA Yönlendirme (Sayfa yenilemeden) - PASİF
+          /*
           const sliderBottom = `
               <div class="slider-bottom-container">
                   <div class="slider-bottom-grid">
                       <!-- Üst Sol: Slot Oyunları -->
-                      <div class="slider-bottom-item" onclick="window.location.href='${langPrefix}/casino/group/lobby'">
+                      <div class="slider-bottom-item" onclick="navigateWithoutReload('${langPrefix}/casino/group/lobby')">
                           <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/EIpBfslRNFy6SBmrupvVsBFX2gdFHFaVBC8T3fAR.png" alt="Slot Oyunları" class="slider-bottom-image">
                       </div>
                       <!-- Üst Sağ: Canlı Casino -->
-                      <div class="slider-bottom-item" onclick="window.location.href='${langPrefix}/casino/group/live-lobby'">
+                      <div class="slider-bottom-item" onclick="navigateWithoutReload('${langPrefix}/casino/group/live-lobby')">
                           <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/A5mm1VoGRciOn75iKVCg4DI4aivDPabFKkHwA0XQ.png" alt="Canlı Casino" class="slider-bottom-image">
                       </div>
                       <!-- Alt Sol: Spor Oyunları -->
-                      <div class="slider-bottom-item" onclick="window.location.href='${langPrefix}/sportsbook'">
+                      <div class="slider-bottom-item" onclick="navigateWithoutReload('${langPrefix}/sportsbook')">
                           <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/AoqGK76s6ZWSyg0H70D3meqrXIZdwYcNtSAmKsom.png" alt="Spor Oyunları" class="slider-bottom-image">
                       </div>
                       <!-- Alt Sağ: JojoVIP Club -->
-                      <div class="slider-bottom-item" onclick="window.location.href='${langPrefix}/vip'">
+                      <div class="slider-bottom-item" onclick="navigateWithoutReload('${langPrefix}/vip')">
                           <img src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/5DPopoH61Dj5fqZ5lmMM0gWZsXekd3EopM4KP6QO.png" alt="JojoVIP Club" class="slider-bottom-image">
                       </div>
                   </div>
               </div>
           `;
+          */
+          const sliderBottom = ''; // Pasif - kaldırıldı
 
 
 
@@ -214,22 +171,21 @@
 
 
 
-
       // Big Wins wrapper'ı ve VIP bölümünü gizle, Jackpot container'ı en alta al
       const styleElement = document.createElement('style');
       styleElement.textContent = `
         #jackpots-container { 
-          order: 999 !important;
+          position: relative !important;
           margin-top: 20px !important;
         }
         #big-wins-wrapper {
-          display: none !important; 
-          opacity: 0 !important;
-          visibility: hidden !important;
-          position: absolute !important;
-          left: -9999px !important;
-          pointer-events: none !important;
-          z-index: -9999 !important;
+          display: block !important; 
+          opacity: 1 !important;
+          visibility: visible !important;
+          position: relative !important;
+          left: auto !important;
+          pointer-events: auto !important;
+          z-index: auto !important;
         }
         .vip, .vip__title, .vip__text, .vip__btn {
           display: none !important;
@@ -241,10 +197,21 @@
         div.row:has(.vip) {
           display: none !important;
         }
+        /* Jackpot Container Konumlandırma */
+        #jackpots-container {
+          background: transparent !important;
+          border: none !important;
+          border-radius: 0 !important;
+          margin: 20px 0 !important;
+          padding: 0 !important;
+        }
+        
         @media (max-width: 768px) {
           #jackpots-container {
-            order: 999 !important; /* Mobilde de en alta */
-            margin-top: 15px !important;
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            overflow: hidden !important;
           }
           .popular-sports-container {
             order: 5 !important; /* Mobilde normal sırada */
@@ -254,19 +221,228 @@
             flex-direction: column !important;
           }
         }
+        
+        /* ——— JOJOVA JACKPOT TEMA - DÜZENLİ RENKLER ——— */
+        /* Jackpot Görsel Değiştirme */
+        /* Jackpot logoları doğrudan hedeflenen elementlerde değiştirildi */
+        .jackpot__logo.try {
+          content: url('https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/IgRDqbUdcdEu8Y68oWxmR7cygTrGSAjac1QIu0MP.png') !important;
+        }
+        
+        .jackpot__logo.usd {
+          content: url('https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/mJZfyoxEkJNxSqAw4sMDHyRar6JUXOZ6HOAHqCqO.png') !important;
+        }
+        
+        .jackpot__logo.btc {
+          content: url('https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/Hn14MBJa2UOMdOiiIkc4MushJW0mRZPgS48pwrjL.png') !important;
+        }
+        
+        /* Ana Jackpot Container - Şeffaf Arka Plan + Sarı Border */
+        .jackpot {
+          background: transparent !important;
+          border: 2px solid #FFE55C !important;
+          box-shadow: none !important;
+          border-radius: 12px !important;
+        }
+        
+        .jackpot:after {
+          display: none !important;
+        }
+        
+        .jackpot:before {
+          display: none !important;
+        }
+        
+        /* Tüm Jackpot Değerleri - Siyah Arka Plan + Beyaz Yazı + Sarı Border */
+        .jackpot__value--grand,
+        .jackpot__value--grand-gold,
+        .jackpot__value--grand-7,
+        .jackpot__value--major,
+        .jackpot__value--major-gold,
+        .jackpot__value--major-7,
+        .jackpot__value--major-zebra,
+        .jackpot__value--minor,
+        .jackpot__value--minor-gold,
+        .jackpot__value--minor-7,
+        .jackpot__value--minor-zebra,
+        .jackpot__value--mini,
+        .jackpot__value--mini-gold,
+        .jackpot__value--mini-7,
+        .jackpot__value--mini-zebra,
+        .jackpot__value--zebra {
+          background: #000000 !important;
+          border: 0.2px solid #FFE55C !important;
+          box-shadow: none !important;
+        }
+        
+        .jackpot__value--grand span,
+        .jackpot__value--grand-gold span,
+        .jackpot__value--grand-7 span,
+        .jackpot__value--major span,
+        .jackpot__value--major-gold span,
+        .jackpot__value--major-7 span,
+        .jackpot__value--major-zebra span,
+        .jackpot__value--minor span,
+        .jackpot__value--minor-gold span,
+        .jackpot__value--minor-7 span,
+        .jackpot__value--minor-zebra span,
+        .jackpot__value--mini span,
+        .jackpot__value--mini-gold span,
+        .jackpot__value--mini-7 span,
+        .jackpot__value--mini-zebra span,
+        .jackpot__value--zebra span {
+          background: #000000 !important;
+          color: #ffffff !important;
+        }
+        
+        /* Tüm before elementlerini kaldır (glow efektleri) */
+        .jackpot__value--grand:before,
+        .jackpot__value--grand-gold:before,
+        .jackpot__value--grand-7:before,
+        .jackpot__value--major:before,
+        .jackpot__value--major-gold:before,
+        .jackpot__value--major-7:before,
+        .jackpot__value--major-zebra:before,
+        .jackpot__value--minor:before,
+        .jackpot__value--minor-gold:before,
+        .jackpot__value--minor-7:before,
+        .jackpot__value--minor-zebra:before,
+        .jackpot__value--mini:before,
+        .jackpot__value--mini-gold:before,
+        .jackpot__value--mini-7:before,
+        .jackpot__value--mini-zebra:before,
+        .jackpot__value--zebra:before {
+          display: none !important;
+          box-shadow: none !important;
+        }
+        
+        /* Tüm Nokta Efektleri - Düzeltilmiş Iconlar */
+        .jackpot__value span:after,
+        .jackpot__value span:before {
+          background-color: #FFE55C !important;
+          box-shadow: none !important;
+          content: "●" !important;
+          font-size: 8px !important;
+          width: 8px !important;
+          height: 8px !important;
+          border-radius: 50% !important;
+        }
+        
+        /* Bozuk iconları düzelt */
+        .jackpot__value--grand span:after,
+        .jackpot__value--grand span:before,
+        .jackpot__value--grand-gold span:after,
+        .jackpot__value--grand-gold span:before {
+          content: "♦" !important;
+          background: none !important;
+          color: #FFE55C !important;
+          font-size: 12px !important;
+          width: auto !important;
+          height: auto !important;
+        }
+        
+        .jackpot__value--major span:after,
+        .jackpot__value--major span:before,
+        .jackpot__value--major-7 span:after,
+        .jackpot__value--major-7 span:before {
+          content: "7" !important;
+          background: none !important;
+          color: #FFE55C !important;
+          font-size: 12px !important;
+          width: auto !important;
+          height: auto !important;
+        }
+        
+        .jackpot__value--zebra span:after,
+        .jackpot__value--zebra span:before {
+          content: "●" !important;
+          background: #FFE55C !important;
+          color: #000 !important;
+          font-size: 8px !important;
+          width: 8px !important;
+          height: 8px !important;
+          border-radius: 50% !important;
+        }
+        
+        /* Jackpot Logo Wrapper - Çerçevesiz ve Glow'suz */
+        .jackpot__logo-wrapper,
+        .jackpot__logo-wrapper--try,
+        .jackpot__logo-wrapper--usd,
+        .jackpot__logo-wrapper--btc {
+          background: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+        }
+        
+        /* Jackpot Başlık ve Metin */
+        .jackpot__title {
+          color: #FFE55C !important;
+          text-shadow: none !important;
+        }
+        
+        .jackpot__text {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        .jackpot__text b {
+          color: #FFE55C !important;
+        }
+        
+        /* Jackpot Button */
+        .jackpot__btn {
+          background: linear-gradient(135deg, #FFE55C 0%, #FFD24D 100%) !important;
+          color: #000 !important;
+          font-weight: 700 !important;
+          box-shadow: none !important;
+          transition: all 0.3s ease !important;
+        }
+        
+        .jackpot__btn:hover {
+          background: linear-gradient(135deg, #FFD24D 0%, #FFC940 100%) !important;
+          color: #000 !important;
+          box-shadow: none !important;
+          transform: translateY(-2px) !important;
+        }
+        
+        /* Animasyon Kaldırıldı - Glow Yok */
+        .jackpot__value--grand,
+        .jackpot__value--grand-gold,
+        .jackpot__value--zebra {
+          animation: none !important;
+        }
+        
+        /* Mobil Uyumluluk */
+        @media (max-width: 768px) {
+          .jackpot {
+            margin: 8px 4px !important;
+            padding: 0 6px !important;
+          }
+          
+          .jackpot__btn {
+            width: 100px !important;
+            height: 36px !important;
+            font-size: 11px !important;
+          }
+          
+          .jackpot__logo {
+            max-width: 80px !important;
+          }
+        }
       `;
       document.head.appendChild(styleElement);
       
-      // Jackpot container'ı en alta al
+      // Jackpot container'ı pb-component-wrapper altına al
       const jackpotsContainer = document.getElementById('jackpots-container');
       if (jackpotsContainer) {
-        jackpotsContainer.style.cssText = 'order: 999 !important; margin-top: 20px !important;';
+        jackpotsContainer.style.cssText = 'background: transparent !important; border: none !important; margin: 20px 0 !important; padding: 0 !important;';
       }
       
-      // Big Wins wrapper'ını gizle
+      // Big Wins wrapper'ını göster
       const bigWinsWrapper = document.getElementById('big-wins-wrapper');
       if (bigWinsWrapper) {
-        bigWinsWrapper.style.cssText = 'display: none !important; opacity: 0 !important; visibility: hidden !important; position: absolute !important; left: -9999px !important; pointer-events: none !important; z-index: -9999 !important;';
+        bigWinsWrapper.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important; position: relative !important; left: auto !important; pointer-events: auto !important; z-index: auto !important;';
       }
       
       // VIP elementlerini gizle
@@ -283,36 +459,48 @@
         }
       });
       
-      // Futbol Sekmesi Container - TIKLAMA İLE SPORTSBOOK'A YÖNLENDİRME
-      const futbolSekmesiContainer = `
-          <div class="pb-component-wrapper" style="margin-top: 10px;">
-              <div class="futbol-banner-container col-4 futbol-banner-without-titles" data-scroll-lock-scrollable="">
-                  <div class="futbol-banner-info futbol-banner bundesliga" aria-label="Bundesliga" onclick="window.location.href='${langPrefix}/sportsbook'" style="cursor: pointer;">
-                      <img alt="Bundesliga" loading="lazy" src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/aIbhaWSGcJcneCnwIXAnsWFLYnF6bvyvNVOUiFMZ.webp" class="futbol-banner-img">
-                      <div class="futbol-banner-title">Bundesliga</div>
-                  </div>
-                  <div class="futbol-banner-info futbol-banner laliga" aria-label="La Liga" onclick="window.location.href='${langPrefix}/sportsbook'" style="cursor: pointer;">
-                      <img alt="La Liga" loading="lazy" src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/HeuC8ictUKIrSTxeXuGySfo2FvUxmY40MnnlGgeG.webp" class="futbol-banner-img">
-                      <div class="futbol-banner-title">La Liga</div>
-                  </div>
-                  <div class="futbol-banner-info futbol-banner premier-league" aria-label="Premier League" onclick="window.location.href='${langPrefix}/sportsbook'" style="cursor: pointer;">
-                      <img alt="Premier League" loading="lazy" src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/o1q4JAyJc20PBfujBi0DtJHtRjhCxRYjxzteEt5I.webp" class="futbol-banner-img">
-                      <div class="futbol-banner-title">Premier League</div>
-                  </div>
-                  <div class="futbol-banner-info futbol-banner serie-a" aria-label="Serie A" onclick="window.location.href='${langPrefix}/sportsbook'" style="cursor: pointer;">
-                      <img alt="Serie A" loading="lazy" src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/nMaflwuXV12Dd5DFW1sRBcKmyev0a3E5XhJPYYk5.webp" class="futbol-banner-img">
-                      <div class="futbol-banner-title">Serie A</div>
-                  </div>
-                  <div class="futbol-banner-info futbol-banner super-lig" aria-label="Süper Lig" onclick="window.location.href='${langPrefix}/sportsbook'" style="cursor: pointer;">
-                      <img alt="Süper Lig" loading="lazy" src="https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/yONpfInMNDkU8hNochP0gmn0aZ2xjSe8unyItHaa.webp" class="futbol-banner-img">
-                      <div class="futbol-banner-title">Süper Lig</div>
-                  </div>
-              </div>
-          </div>
-      `;
+      // FAVORİ YÖNTEMLER bölümünü gizle
+      document.querySelectorAll('.section__title--head').forEach(function(h1) {
+        if (h1.textContent.trim().indexOf('FAVOR') !== -1) {
+          var headingRow = h1.closest('.row');
+          if (headingRow) {
+            headingRow.style.cssText = 'display: none !important;';
+            var nextRow = headingRow.nextElementSibling;
+            if (nextRow && nextRow.classList.contains('row') && !nextRow.querySelector('.section__title')) {
+              nextRow.style.cssText = 'display: none !important;';
+            }
+          }
+        }
+      });
 
-      // İçeriği targetDiv'e ekle - slider en üstte, futbol sekmesi eklendi (sport banner kaldırıldı)
-      targetDiv.innerHTML = '<div class="container">' + sliderContainer + sliderBottom + futbolSekmesiContainer + '</div>';
+      // Last Bets Wrapper'ı gizle (Web & Mobil)
+      const lastBetsWrapper = document.getElementById('last-bets-wrapper');
+      if (lastBetsWrapper) {
+        lastBetsWrapper.style.cssText = 'display: none !important; opacity: 0 !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important;';
+      }
+      
+      const futbolSekmesiContainer = '';
+
+      // İçeriği targetDiv'e ekle - slider en üstte (futbol sekmesi aşağıya taşınacak)
+      targetDiv.innerHTML = '<div class="container">' + sliderContainer + '</div>';
+      
+      // Futbol banner devre disi
+      
+      // Jackpot container'ı pb-component-wrapper altına taşı
+      setTimeout(() => {
+        const jackpotContainer = document.getElementById('jackpots-container');
+        const pbWrapper = document.querySelector('.pb-component-wrapper');
+        const containerDiv = document.querySelector('.container');
+        
+        if (jackpotContainer && pbWrapper && containerDiv) {
+          // Önce jackpot'u container'dan çıkar
+          if (jackpotContainer.parentNode) {
+            jackpotContainer.parentNode.removeChild(jackpotContainer);
+          }
+          // Sonra pb-component-wrapper'ın altına ekle
+          pbWrapper.insertAdjacentElement('afterend', jackpotContainer);
+        }
+      }, 300);
       
 
 
@@ -326,179 +514,100 @@
       } else {
       }
 
-      // Futbol Sekmesi CSS'ini yükle
-      if (!document.querySelector('#futbol-sekmesi-css')) {
-        const futbolCSS = document.createElement('link');
-        futbolCSS.id = 'futbol-sekmesi-css';
-        futbolCSS.rel = 'stylesheet';
-        futbolCSS.href = './futbol_sekmesi/futbol_sekmesi.css';
-        document.head.appendChild(futbolCSS);
-      }
+      // Futbol Sekmesi CSS devre disi
 
       // Slider'ları başlat - Timeout ile bekle DOM yüklensin
       setTimeout(() => {
         initializeSliders();
-      }, 500);
+      }, 800);
     } else {
     }
   }
 
-  // Slider initialization fonksiyonu
+  // Slider initialization fonksiyonu (Splide.js)
   function initializeSliders() {
-    
-    // Swiper CSS ve JS dosyalarını yükle
-    if (!document.querySelector('link[href*="swiper"]')) {
-      const swiperCSS = document.createElement('link');
-      swiperCSS.rel = 'stylesheet';
-      swiperCSS.href = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css';
-      document.head.appendChild(swiperCSS);
-      
-      // Local CSS'imizi CDN'den sonra yükle ki bizim stiller öncelikli olsun
+
+    // Splide CSS yükle
+    if (!document.querySelector('link[href*="splide"]')) {
+      const splideCSS = document.createElement('link');
+      splideCSS.rel = 'stylesheet';
+      splideCSS.href = 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css';
+      document.head.appendChild(splideCSS);
+
       setTimeout(() => {
-        if (!document.querySelector('#custom-swiper-css')) {
+        if (!document.querySelector('#custom-slider-css')) {
           const customCSS = document.createElement('link');
-          customCSS.id = 'custom-swiper-css';
+          customCSS.id = 'custom-slider-css';
           customCSS.rel = 'stylesheet';
           customCSS.href = './Genel_Style/swiper-slider.css';
           document.head.appendChild(customCSS);
         }
       }, 100);
     }
-    
-    // Swiper JS yükle veya varsa direkt kullan
+
     function createSliders() {
-      
+      if (typeof Splide === 'undefined') return;
+
       // Desktop Slider
-      const desktopSlider = document.querySelector('.main-slider');
-      if (desktopSlider) {
-        
-        if (typeof Swiper !== 'undefined') {
-          const swiper = new Swiper('.main-slider', {
-            loop: true,
-            autoplay: {
-              delay: 5000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            },
-            speed: 600,
-            pagination: {
-              el: '.main-slider .swiper-pagination',
-              clickable: true,
-              dynamicBullets: false,
-              renderBullet: function (index, className) {
-                return '<span class="' + className + '"></span>';
-              },
-            },
-            navigation: false,
-            touchRatio: 1,
-            touchAngle: 45,
-            grabCursor: true,
-            effect: 'slide',
-            slidesPerView: 1,
-            spaceBetween: 0,
-            allowTouchMove: true,
-            simulateTouch: true,
-            resistance: true,
-            resistanceRatio: 0.85,
-            followFinger: true,
-            watchSlidesProgress: true,
-            watchSlidesVisibility: true,
-            updateOnWindowResize: true,
-            observer: true,
-            observeParents: true,
-            on: {
-              slideChange: function () {
-                // Pagination güncellenmesini zorla
-                this.pagination.render();
-                this.pagination.update();
-              },
-              touchEnd: function () {
-                // Manuel slide sonrası autoplay'i yeniden başlat
-                this.autoplay.stop();
-                this.autoplay.start();
-              }
-            }
-          });
-        }
+      var desktopEl = document.querySelector('.main-slider');
+      if (desktopEl && !desktopEl._splideMounted) {
+        desktopEl._splideMounted = true;
+        new Splide('.main-slider', {
+          type: 'loop',
+          autoplay: true,
+          interval: 5000,
+          pauseOnHover: true,
+          speed: 500,
+          pagination: true,
+          arrows: false,
+          drag: true,
+          perPage: 1,
+          gap: 0,
+          rewind: false,
+          lazyLoad: false,
+        }).mount();
       }
 
       // Mobile Slider
-      const mobileSlider = document.querySelector('.mobile-slider');
-      if (mobileSlider) {
-        
-        if (typeof Swiper !== 'undefined') {
-          const mobileSwiper = new Swiper('.mobile-slider', {
-            loop: true,
-            autoplay: {
-              delay: 5000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            },
-            speed: 600,
-            pagination: {
-              el: '.mobile-slider .swiper-pagination',
-              clickable: true,
-              dynamicBullets: false,
-              renderBullet: function (index, className) {
-                return '<span class="' + className + '"></span>';
-              },
-            },
-            navigation: false,
-            touchRatio: 1,
-            touchAngle: 45,
-            grabCursor: true,
-            effect: 'slide',
-            slidesPerView: 1,
-            spaceBetween: 0,
-            allowTouchMove: true,
-            simulateTouch: true,
-            resistance: true,
-            resistanceRatio: 0.85,
-            followFinger: true,
-            watchSlidesProgress: true,
-            watchSlidesVisibility: true,
-            updateOnWindowResize: true,
-            observer: true,
-            observeParents: true,
-            on: {
-              slideChange: function () {
-                // Pagination güncellenmesini zorla
-                this.pagination.render();
-                this.pagination.update();
-              },
-              touchEnd: function () {
-                // Manuel slide sonrası autoplay'i yeniden başlat
-                this.autoplay.stop();
-                this.autoplay.start();
-              }
-            }
-          });
-        }
+      var mobileEl = document.querySelector('.mobile-slider');
+      if (mobileEl && !mobileEl._splideMounted) {
+        mobileEl._splideMounted = true;
+        new Splide('.mobile-slider', {
+          type: 'loop',
+          autoplay: true,
+          interval: 5000,
+          speed: 400,
+          pagination: true,
+          arrows: false,
+          drag: true,
+          perPage: 1,
+          gap: 0,
+          rewind: false,
+          lazyLoad: false,
+        }).mount();
       }
     }
-    
-    // Swiper zaten varsa direkt kullan
-    if (typeof Swiper !== 'undefined') {
+
+    // Splide JS yükle veya varsa direkt kullan
+    if (typeof Splide !== 'undefined') {
       createSliders();
     } else {
-      // Swiper JS'i yükle
-      if (!document.querySelector('script[src*="swiper"]')) {
-        const swiperJS = document.createElement('script');
-        swiperJS.src = 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js';
-        swiperJS.onload = function() {
-          setTimeout(createSliders, 100);
+      if (!document.querySelector('script[src*="splide"]')) {
+        var splideJS = document.createElement('script');
+        splideJS.src = 'https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js';
+        splideJS.onload = function() {
+          setTimeout(createSliders, 50);
         };
-        document.head.appendChild(swiperJS);
+        document.head.appendChild(splideJS);
       } else {
-        // Script var ama Swiper yok, bekle
-        let attempts = 0;
-        const checkSwiper = setInterval(() => {
+        var attempts = 0;
+        var checkSplide = setInterval(function() {
           attempts++;
-          if (typeof Swiper !== 'undefined') {
-            clearInterval(checkSwiper);
+          if (typeof Splide !== 'undefined') {
+            clearInterval(checkSplide);
             createSliders();
-          } else if (attempts > 50) { // 5 saniye bekle
-            clearInterval(checkSwiper);
+          } else if (attempts > 50) {
+            clearInterval(checkSplide);
           }
         }, 100);
       }
@@ -613,63 +722,84 @@
     }
   }
 
-  // OPTİMİZE EDİLMİŞ kontrol sistemi - interval'ler azaltıldı
+  // Optimize edilmiş kontrol sistemi
   function startContinuousCheck() {
-    // VIP/BigWins için CSS-only çözüm (interval yerine) 
-    if (!document.getElementById('vip-hide-style')) {
-      const hideStyle = document.createElement('style');
-      hideStyle.id = 'vip-hide-style';
-      hideStyle.textContent = `
-        .vip, .vip__title, .vip__text, .vip__btn,
-        #big-wins-wrapper {
-          display: none !important;
-          opacity: 0 !important;
-          visibility: hidden !important;
-          position: absolute !important;
-          left: -9999px !important;
-          pointer-events: none !important;
-        }
-        div.row:has(.vip) {
-          display: none !important;
-        }
-      `;
-      document.head.appendChild(hideStyle);
-    }
-    
-    // Ana kontrol döngüsü - HER 5 SANİYE (3 yerine, daha az agresif)
-    let mainCheckCount = 0;
+    // Ana kontrol döngüsü - daha az agresif
     const mainIntervalId = setInterval(function() {
-      mainCheckCount++;
-      
-      // 60 saniye sonra durdur (sonsuz döngü yerine)
-      if (mainCheckCount > 12) {
-        clearInterval(mainIntervalId);
-        return;
-      }
-      
       if (isHomePage()) {
         const targetDiv = document.getElementById("banners-wrapper");
         const sliderContainer = document.querySelector('.main-slider-container');
         
+        // Eğer banners-wrapper var ama slider-container yoksa güncelle
         if (targetDiv && !sliderContainer) {
           updatePageContent();
         }
         
-        // Main slider kontrolü (basitleştirildi)
+        // Main slider görünürse tekrar gizle
         const mainSlider = document.getElementById("main-slider");
         if (mainSlider && mainSlider.style.display !== 'none') {
           mainSlider.style.display = 'none';
           mainSlider.innerHTML = '';
         }
+        
+        // Jackpot container'ın konumunu kontrol et ve düzelt
+        const jackpotContainer = document.getElementById('jackpots-container');
+        const pbWrapper = document.querySelector('.pb-component-wrapper');
+        if (jackpotContainer && pbWrapper && jackpotContainer.previousElementSibling !== pbWrapper) {
+          if (jackpotContainer.parentNode) {
+            jackpotContainer.parentNode.removeChild(jackpotContainer);
+          }
+          pbWrapper.insertAdjacentElement('afterend', jackpotContainer);
+        }
+        
+        // Altta çıkan mini-slider'ı kaldır
+        const miniSwipers = document.querySelectorAll('.swiper-initialized.swiper-horizontal.swiper-backface-hidden');
+        miniSwipers.forEach(swiper => {
+          // İçeriğinde jackpot görselleri var mı kontrol et
+          const jackpotImages = swiper.querySelectorAll('img[src*="mini-sliders/mJZfyoxEkJNxSqAw4sMDHyRar6JUXOZ6HOAHqCqO.png"], img[src*="mini-sliders/IgRDqbUdcdEu8Y68oWxmR7cygTrGSAjac1QIu0MP.png"], img[src*="mini-sliders/Hn14MBJa2UOMdOiiIkc4MushJW0mRZPgS48pwrjL.png"]');
+          if (jackpotImages.length > 0) {
+            swiper.style.display = 'none';
+            swiper.style.visibility = 'hidden';
+            swiper.style.height = '0';
+            swiper.style.overflow = 'hidden';
+          }
+        });
+        
+        // VIP elementlerini ve Big Wins wrapper'ını sürekli kontrol et ve gizle
+        const vipElements = document.querySelectorAll('.vip, .vip__title, .vip__text, .vip__btn');
+        vipElements.forEach(element => {
+          if (element.style.display !== 'none') {
+            element.style.cssText = 'display: none !important; opacity: 0 !important; visibility: hidden !important; position: absolute !important; left: -9999px !important;';
+          }
+        });
+        
+        // Big Wins wrapper'ını sürekli göster
+        const bigWinsWrapper = document.getElementById('big-wins-wrapper');
+        if (bigWinsWrapper) {
+          bigWinsWrapper.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important; position: relative !important; left: auto !important; pointer-events: auto !important; z-index: auto !important;';
+        }
+        
+        const vipRows = document.querySelectorAll('div.row');
+        vipRows.forEach(row => {
+          if (row.querySelector('.vip') && row.style.display !== 'none') {
+            row.style.cssText = 'display: none !important; opacity: 0 !important; visibility: hidden !important; position: absolute !important; left: -9999px !important;';
+          }
+        });
+        
+        // Last Bets Wrapper'ı gizle (Web & Mobil)
+        const lastBetsWrapper = document.getElementById('last-bets-wrapper');
+        if (lastBetsWrapper) {
+          lastBetsWrapper.style.cssText = 'display: none !important; opacity: 0 !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important;';
+        }
       }
-    }, 5000); // Her 5 saniyede kontrol et
+    }, 3000); // Her 3 saniyede kontrol et
     
-    // İlk yükleme için hızlı kontrol - SADECE 1 SANİYE (2 yerine)
+    // İlk yükleme için hızlı kontrol - sadece 2 saniye
     let quickCheckCount = 0;
     const quickIntervalId = setInterval(function() {
       quickCheckCount++;
       
-      if (quickCheckCount > 4) { // 1 saniye sonra durdur (5x200ms)
+      if (quickCheckCount > 10) { // 2 saniye sonra durdur
         clearInterval(quickIntervalId);
         return;
       }
@@ -682,7 +812,7 @@
           updatePageContent();
         }
       }
-    }, 250); // Her 250ms kontrol et (200 yerine)
+    }, 200); // Her 200ms kontrol et
   }
 
   // Jojova Sohbet butonunu yükle
@@ -695,10 +825,33 @@
     }
   }
 
+  // Safari için History API Override - Her URL değişikliğini yakala
+  function overrideHistoryForSafari() {
+    const pushState = history.pushState;
+    const replaceState = history.replaceState;
+    
+    history.pushState = function() {
+      pushState.apply(history, arguments);
+      setTimeout(() => {
+        superForceUpdate();
+      }, 50);
+    };
+    
+    history.replaceState = function() {
+      replaceState.apply(history, arguments);
+      setTimeout(() => {
+        superForceUpdate();
+      }, 50);
+    };
+  }
+
   // Sayfa yüklendiğinde ve URL değiştiğinde içeriği güncelle
   function initializePageUpdater() {
     // Hemen çalıştır
     superForceUpdate();
+
+    // Safari için History API Override
+    overrideHistoryForSafari();
 
     // Sürekli kontrol başlat
     startContinuousCheck();
@@ -706,12 +859,20 @@
     // Jojova Sohbet butonunu yükle
     loadJojovaSohbetResources();
 
-    // URL değişikliklerini izle
+    // URL değişikliklerini izle - Safari için daha agresif
     let lastUrl = location.href; 
+    let lastCheck = Date.now();
     
-    // MutationObserver ile DOM değişikliklerini izle - OPTİMİZE
+    // Safari için URL değişikliğini sürekli kontrol et
+    setInterval(function() {
+      if (location.href !== lastUrl) {
+        lastUrl = location.href;
+        superForceUpdate();
+      }
+    }, 100); // Her 100ms kontrol et
+    
+    // MutationObserver ile DOM değişikliklerini izle - Safari için daha hassas
     let mutationTimeout;
-    let mutationCount = 0;
     const observer = new MutationObserver(function(mutations) {
       // URL değişti mi kontrol et
       if (location.href !== lastUrl) {
@@ -725,13 +886,6 @@
       
       mutationTimeout = setTimeout(() => {
         mutationTimeout = null;
-        mutationCount++;
-        
-        // 20 mutation sonra observer'ı durdur
-        if (mutationCount > 20) {
-          observer.disconnect();
-          return;
-        }
         
         if (isHomePage()) {
           const sliderContainer = document.querySelector('.main-slider-container');
@@ -739,47 +893,57 @@
             updatePageContent();
           }
         }
-      }, 500); // 500ms gecikme
+      }, 300); // Safari için daha kısa gecikme
     });
     
-    // Sadece body'yi izle, daha az agresif
+    // Body'yi izle - Safari için subtree: true
     observer.observe(document.body, {
       childList: true,
-      subtree: false // Alt elemanları izleme
+      subtree: true // Safari için alt elemanları da izle
     });
     
-    // 30 saniye sonra observer'ı durdur
-    setTimeout(() => observer.disconnect(), 30000);
-    
-    // Sadece önemli event'leri dinle
+    // Safari için tüm önemli event'leri dinle
     const allEvents = [
-      'popstate', 'hashchange', 'pageshow'
+      'popstate', 'hashchange', 'pageshow', 'pagehide', 
+      'beforeunload', 'visibilitychange'
     ];
     
     allEvents.forEach(function(eventName) {
       window.addEventListener(eventName, function(e) {
-        setTimeout(() => {
-          if (isHomePage()) {
-            const sliderContainer = document.querySelector('.main-slider-container');
-            if (!sliderContainer) {
-              updatePageContent();
-            }
-          }
-        }, 100);
+        // Safari için hemen güncelle
+        if (isHomePage()) {
+          superForceUpdate();
+        }
       }, true);
     });
 
-    // Document event'leri - sadece readystatechange yeterli
+    // Document event'leri
     document.addEventListener('readystatechange', function() {
       if (document.readyState === 'complete') {
         superForceUpdate();
       }
     });
 
-    // Mobil için ek event'ler - sadece önemli olanlar
+    // Safari için click event'lerini izle - Link tıklamalarını yakala
+    document.addEventListener('click', function(e) {
+      const link = e.target.closest('a');
+      if (link && link.href && !link.target) {
+        // Internal link'se kontrol et
+        const url = new URL(link.href, window.location.origin);
+        if (url.origin === window.location.origin) {
+          setTimeout(() => {
+            superForceUpdate();
+          }, 100);
+        }
+      }
+    }, true);
+
+    // Mobil için ek event'ler
     if (isMobile()) {
       const mobileEvents = [
-        'orientationchange' // Sadece ekran döndürme için
+        'orientationchange',
+        'touchstart',
+        'touchend'
       ];
       
       mobileEvents.forEach(function(eventName) {
@@ -787,208 +951,23 @@
           if (isHomePage()) {
             const sliderContainer = document.querySelector('.main-slider-container');
             if (!sliderContainer) {
-              setTimeout(updatePageContent, 500); // Daha uzun gecikme
+              setTimeout(updatePageContent, 200);
             }
           }
         }, { passive: true });
       });
     }
 
-    // Backup sistem - SADECE 30 SANİYE BOYUNCA (sonsuz yerine)
-    let backupCount = 0;
-    const backupInterval = setInterval(function() {
-      backupCount++;
-      if (backupCount > 6) { // 30 saniye sonra durdur
-        clearInterval(backupInterval);
-        return;
-      }
+    // Safari için daha sık backup kontrol
+    setInterval(function() {
       if (isHomePage()) {
         const sliderContainer = document.querySelector('.main-slider-container');
         if (!sliderContainer) {
           updatePageContent();
         }
       }
-    }, 5000);
+    }, 2000); // 2 saniyede bir kontrol et
   }
-
-  // Özel Telegram Popup Sistemi
-  function initCustomPermissionSystem() {
-    // Özel Telegram popup'ını oluştur
-    createCustomPermissionPopup();
-  }
-  
-  // Telegram popup sistemi için SDK yükleme gereksiz
-  
-  // Özel izin popup'ını oluştur
-  function createCustomPermissionPopup() {
-    // CSS stillerini ekle
-    const styles = `
-    <style id="custom-perm-styles">
-    .custom-perm{
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.8);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: linear-gradient(145deg, #ffffff 0%, #f8fafe 100%);
-      color: #333333;
-      padding: 22px;
-      border-radius: 18px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.25), 0 5px 15px rgba(30,144,255,0.1);
-      border: 1px solid rgba(30,144,255,0.1);
-      max-width: 420px;
-      width: calc(100% - 40px);
-      font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
-      z-index: 99999;
-      opacity: 0;
-      transition: transform 300ms ease, opacity 300ms ease;
-    }
-    .custom-perm.show{
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-    .custom-perm .bell{
-      color: #1e90ff;
-      flex: 0 0 40px;
-      margin-left: 2px;
-    }
-    .perm-body{ flex: 1; min-width: 0; }
-    .perm-title{ font-weight: 700; font-size: 15px; margin-bottom: 5px; color: #2c3e50; line-height: 1.3; }
-    .perm-sub{ font-size: 13px; color: #5a6c7d; margin-bottom: 12px; line-height: 1.4; }
-    .perm-actions{ display:flex; gap:8px; justify-content:flex-end; }
-    .btn{
-      border: none;
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 13px;
-      transition: all 0.25s ease;
-      letter-spacing: 0.3px;
-    }
-    .btn-deny{
-      background: #f5f5f5;
-      color: #666;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .btn-deny:hover{
-      background: #e9e9e9;
-    }
-    .btn-allow{
-      background: linear-gradient(135deg,#1e90ff 0%,#0066cc 100%);
-      color: #ffffff;
-      box-shadow: 0 8px 25px rgba(30,144,255,0.35);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .btn-allow:hover{
-      background: linear-gradient(135deg,#4da6ff 0%,#0056b3 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 35px rgba(30,144,255,0.45);
-    }
-    .perm-close{
-      position: absolute;
-      top: 6px;
-      right: 8px;
-      background: transparent;
-      color: #999;
-      border: 0;
-      font-size: 18px;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-    .perm-close:hover{
-      color: #333;
-    }
-    @media (max-width:480px){
-      .custom-perm{ width: calc(100% - 24px); padding: 16px; }
-      .perm-title{ font-size: 15px; }
-    }
-    .hidden { display: none !important; }
-    </style>
-    `;
-    
-    // HTML popup'ını oluştur
-    const popupHTML = `
-    <div id="custom-perm" class="custom-perm" role="dialog" aria-live="polite" aria-label="Bildirim izni">
-      <div class="perm-left">
-        <svg class="bell" width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M15 17H9a3 3 0 006 0z" fill="currentColor" />
-          <path d="M18 8a6 6 0 10-12 0v5l-2 2v1h16v-1l-2-2V8z" stroke="currentColor" stroke-width="0.5" />
-        </svg>
-      </div>
-      <div class="perm-body">
-        <div class="perm-title">Promosyonlar ve güncel giriş adresi için Jojova telegram adresine katıl!</div>
-        <div class="perm-sub">Hemen katıl ve promosyonlarda geri kalma.</div>
-        <div class="perm-actions">
-          <button id="perm-deny" class="btn btn-deny" type="button">Sonra</button>
-          <button id="perm-allow" class="btn btn-allow" type="button">Telegram'a Git</button>
-        </div>
-      </div>
-      <button id="perm-close" class="perm-close" aria-label="Kapat">&times;</button>
-    </div>
-    `;
-    
-    // Head'e CSS ekle
-    document.head.insertAdjacentHTML('beforeend', styles);
-    
-    // Body'e popup ekle
-    document.body.insertAdjacentHTML('beforeend', popupHTML);
-    
-    
-    // Event listener'ları bağla
-    setupPermissionEvents();
-  }
-  
-  // Event listener'ları kurma
-  function setupPermissionEvents() {
-    const customPerm = document.getElementById('custom-perm');
-    const allowBtn = document.getElementById('perm-allow');
-    const denyBtn = document.getElementById('perm-deny');
-    const closeBtn = document.getElementById('perm-close');
-    
-    const dismissedKey = 'custom-perm-dismissed-v1';
-    
-    // Popup gösterme kontrolü
-    if (localStorage.getItem(dismissedKey) === '1') {
-      customPerm.classList.add('hidden');
-    } else {
-      // Hemen popup'ı göster
-      customPerm.classList.add('show');
-    }
-    
-    function hidePerm(saveDismiss = true) {
-      customPerm.classList.remove('show');
-      if (saveDismiss) localStorage.setItem(dismissedKey, '1');
-      setTimeout(() => customPerm.classList.add('hidden'), 220);
-    }
-    
-    // Engelle butonu
-    denyBtn.addEventListener('click', () => {
-      hidePerm(true);
-    });
-    
-    // Kapat butonu
-    closeBtn.addEventListener('click', () => {
-      hidePerm(true);
-    });
-    
-    // Telegram'a Git butonu
-    allowBtn.addEventListener('click', async () => {
-      hidePerm(false);
-      
-      // Telegram adresine yönlendir
-      window.open('https://t.me/+9VwSnEpsgB00MmFk', '_blank');
-    });
-  }
-  
-  // Telegram yönlendirmesi için push notification kodları gereksiz
-
-  // Ana sistem başlatma
-  setTimeout(() => {
-    initCustomPermissionSystem();
-  }, 1000);
 
   // DOM yüklendikten sonra veya hemen çalıştır
   if (document.readyState === 'loading') {
@@ -1178,17 +1157,17 @@
 }
 
 /* Light theme için sade hover varyasyonu */
-[data-bs-theme=\"light\"] .sidebar .sidebar__nav a:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__nav button:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__link:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__link-small:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__nav-small a:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__nav-small button:hover,
-[data-bs-theme=\"light\"] .sidebar .crypto-link:hover,
-[data-bs-theme=\"light\"] .sidebar .crypto-link-small:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__lang-btn:hover,
-[data-bs-theme=\"light\"] .sidebar .sidebar__lang-small-btn:hover,
-[data-bs-theme=\"light\"] .sidebar .menu-item-wrapper .sidebar__collapsed:hover {
+[data-bs-theme="light"] .sidebar .sidebar__nav a:hover,
+[data-bs-theme="light"] .sidebar .sidebar__nav button:hover,
+[data-bs-theme="light"] .sidebar .sidebar__link:hover,
+[data-bs-theme="light"] .sidebar .sidebar__link-small:hover,
+[data-bs-theme="light"] .sidebar .sidebar__nav-small a:hover,
+[data-bs-theme="light"] .sidebar .sidebar__nav-small button:hover,
+[data-bs-theme="light"] .sidebar .crypto-link:hover,
+[data-bs-theme="light"] .sidebar .crypto-link-small:hover,
+[data-bs-theme="light"] .sidebar .sidebar__lang-btn:hover,
+[data-bs-theme="light"] .sidebar .sidebar__lang-small-btn:hover,
+[data-bs-theme="light"] .sidebar .menu-item-wrapper .sidebar__collapsed:hover {
   background: rgba(0, 0, 0, 0.04) !important;
   border-color: rgba(0, 0, 0, 0.15) !important;
 }
@@ -1229,10 +1208,10 @@
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-[data-bs-theme=\"light\"] .sidebar .sidebar__link-small,
-[data-bs-theme=\"light\"] .sidebar .sidebar__nav-small a,
-[data-bs-theme=\"light\"] .sidebar .sidebar__nav-small button,
-[data-bs-theme=\"light\"] .sidebar .crypto-link-small {
+[data-bs-theme="light"] .sidebar .sidebar__link-small,
+[data-bs-theme="light"] .sidebar .sidebar__nav-small a,
+[data-bs-theme="light"] .sidebar .sidebar__nav-small button,
+[data-bs-theme="light"] .sidebar .crypto-link-small {
   background: rgba(0, 0, 0, 0.03) !important;
   border-color: rgba(0, 0, 0, 0.12) !important;
 }
@@ -1261,7 +1240,7 @@
   color: var(--tf-tc) !important;
 }
 
-[data-bs-theme=\"light\"] .sidebar .active .svg-icon {
+[data-bs-theme="light"] .sidebar .active .svg-icon {
   fill: #1d2735 !important;
   color: #1d2735 !important;
 }`;
@@ -1325,23 +1304,154 @@
   }
   injectMiniGoldOnly();
 
-  // #main__content arka planını #273341 yap
-  (function injectMainContentBG(){
-    var css = `#main__content { background: #273341 !important; }`;
-    var el = document.getElementById('main-content-bg-style');
+  // Background Image Overlay - Tüm içeriğin üstünde (Desktop + Mobil)
+  (function injectBGStyles(){
+    var css = `
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://vendor-provider.fra1.cdn.digitaloceanspaces.com/ebetlab/ep3YGM2vykm19eefqTFkF0LvamjEEULx/mini-sliders/ze0z0eskNINKF115seHnujKtLKXg9nCOdHqspqfg.png') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+        opacity: 0.1 !important;
+        pointer-events: none !important;
+        z-index: 99999 !important;
+        mix-blend-mode: lighten !important;
+      }
+    `;
+    var el = document.getElementById('bg-main-style');
     if (el) {
       el.textContent = css;
       return;
     }
     el = document.createElement('style');
-    el.id = 'main-content-bg-style';
+    el.id = 'bg-main-style';
     el.type = 'text/css';
     el.appendChild(document.createTextNode(css));
     document.head.appendChild(el);
   })();
 
+  // ========== AdBlock bypass v3: Proaktif URL Rewriting ==========
+  (function() {
+    var _proxyBase = 'https://' + 'wsrv.nl' + '/?url=';
+    var _blocked = String.fromCharCode(47, 112, 114, 111, 109, 111, 116, 105); // "/promoti"
+
+    function _isPromoSrc(s) {
+      return s && s.indexOf(_blocked) > -1;
+    }
+
+    function _makeProxyUrl(originalUrl) {
+      return _proxyBase + encodeURIComponent(originalUrl);
+    }
+
+    function rewriteImgSrc(img) {
+      if (!img || img.dataset.mitoRw === '1') return;
+
+      var src = img.getAttribute('src') || '';
+      var dataSrc = img.getAttribute('data-src') || '';
+      var targetSrc = src || dataSrc;
+
+      if (!_isPromoSrc(targetSrc)) return;
+
+      img.dataset.mitoRw = '1';
+      img.dataset.mitoOrig = targetSrc;
+
+      var proxyUrl = _makeProxyUrl(targetSrc);
+
+      if (src) img.setAttribute('src', proxyUrl);
+      if (dataSrc) img.setAttribute('data-src', proxyUrl);
+      if (img.srcset) img.removeAttribute('srcset');
+
+      img.style.display = '';
+      img.style.visibility = 'visible';
+      img.style.opacity = '1';
+
+      var span = img.closest('.lazy-load-image-background');
+      if (span) {
+        span.classList.remove('blur');
+        span.style.display = 'inline-block';
+        span.style.width = '100%';
+        span.style.height = '100%';
+      }
+
+      img.addEventListener('error', function _proxyErr() {
+        img.removeEventListener('error', _proxyErr);
+        if (span) {
+          span.style.backgroundImage = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)';
+          span.style.backgroundSize = 'cover';
+          span.style.display = 'block';
+          span.style.width = '100%';
+          span.style.height = '100%';
+          span.style.minHeight = '200px';
+        }
+        img.style.display = 'none';
+      });
+    }
+
+    function scanAllPromoImgs() {
+      var imgs = document.querySelectorAll('img');
+      for (var i = 0; i < imgs.length; i++) {
+        rewriteImgSrc(imgs[i]);
+      }
+    }
+
+    var _promoObTarget = document.documentElement || document.body;
+    var _promoRewriteObs = new MutationObserver(function(muts) {
+      for (var i = 0; i < muts.length; i++) {
+        var added = muts[i].addedNodes;
+        for (var j = 0; j < added.length; j++) {
+          var node = added[j];
+          if (node.nodeType !== 1) continue;
+          if (node.tagName === 'IMG') {
+            rewriteImgSrc(node);
+          } else if (node.querySelectorAll) {
+            var imgs = node.querySelectorAll('img');
+            for (var k = 0; k < imgs.length; k++) {
+              rewriteImgSrc(imgs[k]);
+            }
+          }
+        }
+        if (muts[i].type === 'attributes' && muts[i].target.tagName === 'IMG') {
+          var t = muts[i].target;
+          t.dataset.mitoRw = '';
+          rewriteImgSrc(t);
+        }
+      }
+    });
+
+    _promoRewriteObs.observe(_promoObTarget, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['src', 'data-src']
+    });
+
+    function _initPromoRewrite() {
+      scanAllPromoImgs();
+      setTimeout(scanAllPromoImgs, 500);
+      setTimeout(scanAllPromoImgs, 2000);
+      setTimeout(scanAllPromoImgs, 5000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', _initPromoRewrite);
+    } else {
+      _initPromoRewrite();
+    }
+    window.addEventListener('load', _initPromoRewrite);
+  })();
+
 })(); 
 </script>
+ 
 
 /* ===== Genel_Style/footer_backlink.js ===== */
 <script>
