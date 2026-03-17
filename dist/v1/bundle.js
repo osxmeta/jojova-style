@@ -4598,12 +4598,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* ===== SCRIPT/bundle_test.js ===== */
-// JOJOVA Bundle Test - Çalışıyorsa console'da ve sayfada görünür
+// JOJOVA Bundle Test - Siyah popup, tiklayinca kapanir
 (function() {
-    console.log('%c[JOJOVA BUNDLE] JS LOADED OK ✓', 'color: #00ff00; font-size: 16px; font-weight: bold;');
+    console.log('%c[JOJOVA BUNDLE] JS LOADED OK', 'color: #00ff00; font-size: 20px; font-weight: bold;');
 
-    var testDiv = document.createElement('div');
-    testDiv.id = 'jojova-bundle-test';
-    testDiv.textContent = 'JOJOVA BUNDLE AKTIF';
-    (document.body || document.documentElement).appendChild(testDiv);
+    var overlay = document.createElement('div');
+    overlay.id = 'jojova-bundle-test-overlay';
+
+    var box = document.createElement('div');
+    box.id = 'jojova-bundle-test';
+    box.innerHTML = 'JOJOVA BUNDLE AKTIF<span>Tikla kapatmak icin</span>';
+
+    overlay.appendChild(box);
+    overlay.addEventListener('click', function() { overlay.remove(); });
+
+    (document.body || document.documentElement).appendChild(overlay);
 })();
