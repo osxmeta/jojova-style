@@ -50,6 +50,7 @@ const CSS_FILES = [
     'slot_oncesi_css/slot_unavailable.css',
     'Sport_Kısmı/css.css',
     'yatirim_uyari_sistemi/yatirim_uyari.css',
+    'CSS/main-content.css',
 ];
 
 // ============================================================
@@ -71,6 +72,7 @@ const JS_FILES = [
     'promo_buton/promo_image_fixer.js',
     'yatirim_uyari_sistemi/yatirim_uyari.js',
     'page_loader.js',
+    'SCRIPT/login.js',
 ];
 
 // ============================================================
